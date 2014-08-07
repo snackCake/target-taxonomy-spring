@@ -1,5 +1,6 @@
 package com.target.taxonomy.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class TaxonomyNode {
     public TaxonomyNode() 
     {
         childnodes = new ArrayList<TaxonomyNode>();
-        tags = new HashSet<>();
+
     }
 
     public TaxonomyNode(TaxonomyNode original) 
@@ -32,10 +33,10 @@ public class TaxonomyNode {
         {
             childnodes.add(new TaxonomyNode(childNode));
         }
-        for (Tag tag : original.tags) 
-        {
-            tags.add(new Tag(tag.getName(), tag.getTagType()));
-        }
+//        for (Tag tag : original.tags)
+//        {
+//            tags.add(new Tag(tag.getName(), tag.getTagType()));
+//        }
     }
     
     /**
@@ -105,11 +106,12 @@ public class TaxonomyNode {
         childnodes = theChildnodes;
     }
 
-	public List<Tag> getTags() {
-		return tags;
-	}
 
-	public void setTags(List<Tag> tags) {
-		this.tags = tags;
-	}
+    public void addChildNode(TaxonomyNode taxonomyNode) {
+        if(childnodes == null)
+        {
+            childnodes = new ArrayList<TaxonomyNode>();
+        }
+        childnodes.add(taxonomyNode);
+    }
 }

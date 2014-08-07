@@ -1,5 +1,7 @@
 package com.target.taxonomy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,8 +22,8 @@ public class TaxonomyNode {
 
     public TaxonomyNode() 
     {
-        childnodes = new ArrayList<TaxonomyNode>();
-
+        childnodes = new ArrayList<>();
+        tags = new HashSet<>();
     }
 
     public TaxonomyNode(TaxonomyNode original) 

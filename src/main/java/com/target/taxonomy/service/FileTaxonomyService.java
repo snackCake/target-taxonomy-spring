@@ -14,7 +14,6 @@ import com.target.taxonomy.filter.FilterCriteria;
 @Service
 public class FileTaxonomyService implements TaxonomyService {
 
-    private TaxonomyNode referenceRootNode;
     private TaxonomyNode virtualNode;
     private TaxonomyNode standardNode;
 
@@ -25,7 +24,11 @@ public class FileTaxonomyService implements TaxonomyService {
     }
 
     private TaxonomyNode mergeTaxonomyNode(FilterCriteria criteria) {
-        return new TaxonomyNode(referenceRootNode);
+        TaxonomyNode rootNode = new TaxonomyNode();
+        rootNode.setTitle("root");
+        rootNode.addChildNode(standardNode);
+        rootNode.addChildNode(virtualNode);
+        return rootNode;
     }
 
     @Override
@@ -49,7 +52,6 @@ public class FileTaxonomyService implements TaxonomyService {
     }
 
     private void ensureRootTreeLoaded(String nodePath) throws IOException {
-        //make root
         //make regular
         buildStandardNode(nodePath + "/TreeCategory.json");
         //make virtual

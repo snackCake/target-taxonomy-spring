@@ -37,6 +37,41 @@ public class TaxonomyNode {
             tags.add(new Tag(tag.getName(), tag.getTagType()));
         }
     }
+    
+    /**
+     * Find a node
+     * @param node
+     * @param nodeid
+     * @return
+     */
+    public static TaxonomyNode findNode(TaxonomyNode node, String nodeid)
+    {
+    	TaxonomyNode resultNode;
+    	if (node.nodeid.equalsIgnoreCase(nodeid))
+    	{
+    		resultNode = node;
+    	}
+    	else
+    	{
+    		if (node.getChildnodes() == null || node.getChildnodes().size() == 0)
+    		{
+    			return null;
+    		}
+    		else
+    		{
+    			for (TaxonomyNode taxoNode : node.getChildnodes())
+    			{
+    				resultNode = findNode(taxoNode, nodeid);
+    				if (resultNode != null) 
+    				{
+    					return resultNode;
+    				}
+    			}
+    		}
+    	}
+    		
+    	return null;
+    }
 
     public String getTitle() {
         return title;

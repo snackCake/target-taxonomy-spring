@@ -15,8 +15,14 @@ public class FilterCriteria
 	private List<Tag> includeTag;
 	private List<Tag> requiredTag;
 	private List<Tag> excludeTag;
-	
-	public FilterCriteria()
+
+    public FilterCriteria(List<Tag> theIncludeTag, List<Tag> theRequiredTag, List<Tag> theExcludeTag) {
+        includeTag = theIncludeTag;
+        requiredTag = theRequiredTag;
+        excludeTag = theExcludeTag;
+    }
+
+    public FilterCriteria()
 	{
 		includeTag = new ArrayList<>();
 		requiredTag = new ArrayList<>();

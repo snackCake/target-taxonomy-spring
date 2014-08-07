@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.target.taxonomy.model.TaxonomyNode;
 import java.io.File;
 import java.io.IOException;
+import com.target.taxonomy.filter.FilterCriteria;
 
 /**
  * @author Josh Klun (jklun@nerdery.com)
@@ -18,9 +19,12 @@ public class FileTaxonomyService implements TaxonomyService {
     private TaxonomyNode standardNode;
 
     @Override
-    public TaxonomyNode buildRootNode(String nodePath) throws IOException {
+    public TaxonomyNode buildRootNode(String nodePath, FilterCriteria criteria) throws IOException {
         ensureRootTreeLoaded(nodePath);
+        return mergeTaxonomyNode(criteria);
+    }
 
+    private TaxonomyNode mergeTaxonomyNode(FilterCriteria criteria) {
         return new TaxonomyNode(referenceRootNode);
     }
 
@@ -47,7 +51,9 @@ public class FileTaxonomyService implements TaxonomyService {
     private void ensureRootTreeLoaded(String nodePath) throws IOException {
         //make root
         //make regular
+        buildStandardNode(nodePath + "/TreeCategory.json");
         //make virtual
+        buildVirtualNode(nodePath + "/Mega_Super_Taxonomy_Tool_V2.csv");
 
     }
 

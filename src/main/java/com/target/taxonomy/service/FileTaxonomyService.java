@@ -17,7 +17,8 @@ public class FileTaxonomyService implements TaxonomyService {
     @Override
     public TaxonomyNode buildRootNode(String nodePath) throws IOException {
         ensureRootTreeLoaded(nodePath);
-        return referenceRootNode;
+
+        return new TaxonomyNode(referenceRootNode);
     }
 
     private void ensureRootTreeLoaded(String nodePath) throws IOException {

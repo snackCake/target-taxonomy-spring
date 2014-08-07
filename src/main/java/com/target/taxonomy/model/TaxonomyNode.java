@@ -1,6 +1,7 @@
 package com.target.taxonomy.model;
 
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * @author Josh Klun (jklun@nerdery.com)
@@ -11,6 +12,24 @@ public class TaxonomyNode {
     private String seourl;
     private List<TaxonomyNode> childnodes;
     private List<Tag> tags;
+
+    public TaxonomyNode() {
+        childnodes = new ArrayList<TaxonomyNode>();
+        tags = new ArrayList<Tag>();
+    }
+
+    public TaxonomyNode(TaxonomyNode original) {
+        this();
+        title = original.title;
+        nodeid = original.nodeid;
+        seourl = original.seourl;
+        for (TaxonomyNode childNode : original.childnodes) {
+            childnodes.add(new TaxonomyNode(childNode));
+        }
+        for (Tag tag : original.tags) {
+            tags.add(new Tag(tag.getName(), tag.getTagType()));
+        }
+    }
 
     public String getTitle() {
         return title;

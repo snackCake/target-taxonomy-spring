@@ -9,4 +9,6 @@ import java.io.IOException;
  */
 public interface TaxonomyService {
     TaxonomyNode buildRootNode(String nodePath) throws IOException;
+    TaxonomyNode buildVirtualNode(String path) throws IOException;
+    TaxonomyNode buildStandardNode(String path) throws IOException;
 }

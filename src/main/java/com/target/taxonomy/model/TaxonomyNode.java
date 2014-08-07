@@ -1,6 +1,7 @@
 package com.target.taxonomy.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -14,7 +15,8 @@ public class TaxonomyNode {
     private String mobileUrl;
     private String v1;
     private List<TaxonomyNode> childnodes;
-    private String tags;
+    private String tagsString;
+    private HashSet<Tag> tags;
 
     public TaxonomyNode() 
     {
@@ -33,10 +35,10 @@ public class TaxonomyNode {
         {
             childnodes.add(new TaxonomyNode(childNode));
         }
-//        for (Tag tag : original.tags)
-//        {
-//            tags.add(new Tag(tag.getName(), tag.getTagType()));
-//        }
+        for (Tag tag : original.tags)
+        {
+            tags.add(new Tag(tag.getName(), tag.getTagType()));
+        }
     }
     
     /**
@@ -106,6 +108,37 @@ public class TaxonomyNode {
         childnodes = theChildnodes;
     }
 
+    public String getDesktopUrl() {
+        return desktopUrl;
+    }
+
+    public void setDesktopUrl(String desktopUrl) {
+        this.desktopUrl = desktopUrl;
+    }
+
+    public String getMobileUrl() {
+        return mobileUrl;
+    }
+
+    public void setMobileUrl(String mobileUrl) {
+        this.mobileUrl = mobileUrl;
+    }
+
+    public String getV1() {
+        return v1;
+    }
+
+    public void setV1(String v1) {
+        this.v1 = v1;
+    }
+
+    public HashSet<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(HashSet<Tag> tags) {
+        this.tags = tags;
+    }
 
     public void addChildNode(TaxonomyNode taxonomyNode) {
         if(childnodes == null)
@@ -113,5 +146,21 @@ public class TaxonomyNode {
             childnodes = new ArrayList<TaxonomyNode>();
         }
         childnodes.add(taxonomyNode);
+    }
+
+    public String getTagsString() {
+        return tagsString;
+    }
+
+    public void setTagsString(String tagsString) {
+        this.tagsString = tagsString;
+    }
+
+    public void addTag(Tag tag) {
+        if(tags == null)
+        {
+            tags = new HashSet<>();
+        }
+        tags.add(tag);
     }
 }

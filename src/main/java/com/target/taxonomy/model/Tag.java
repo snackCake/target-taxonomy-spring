@@ -15,6 +15,20 @@ public class Tag
         tagType = theTagType;
     }
 
+    public Tag(String theName)
+    {
+        if("women".equals(theName))
+        {
+            tagType =TagType.CATEGORY_TYPE;
+        }
+        else
+        {
+            tagType = TagType.DISPLAY_GROUP;
+        }
+        this.name = theName;
+
+    }
+
     public enum TagType
 	{
 		DISPLAY_GROUP, CATEGORY_TYPE;

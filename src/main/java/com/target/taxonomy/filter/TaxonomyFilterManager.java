@@ -37,13 +37,13 @@ public class TaxonomyFilterManager
 			TaxonomyNode n = stack.pop();
 
 			// If root or top levels, go ahead
-			for (Iterator<TaxonomyNode> it = n.getChildNodes().iterator(); it.hasNext();)
+			for (Iterator<TaxonomyNode> it = n.getChildnodes().iterator(); it.hasNext();)
 			{
 				TaxonomyNode taxoNode = it.next();
 
-				if (VIRTUAL_NODE.equalsIgnoreCase(n.getNodeId()) 
-						|| ROOT_NODE.equalsIgnoreCase(n.getNodeId())
-						|| STANDARD_NODE.equalsIgnoreCase(n.getNodeId()))
+				if (VIRTUAL_NODE.equalsIgnoreCase(n.getNodeid()) 
+						|| ROOT_NODE.equalsIgnoreCase(n.getNodeid())
+						|| STANDARD_NODE.equalsIgnoreCase(n.getNodeid()))
 				{
 					stack.push(taxoNode);
 				}

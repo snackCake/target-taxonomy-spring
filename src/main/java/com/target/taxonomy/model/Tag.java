@@ -9,8 +9,13 @@ public class Tag
 {
 	private String name;
 	private TagType tagType;
-	
-	public enum TagType 
+
+    public Tag(String theName, TagType theTagType) {
+        name = theName;
+        tagType = theTagType;
+    }
+
+    public enum TagType
 	{
 		DISPLAY_GROUP, CATEGORY_TYPE;
 	}

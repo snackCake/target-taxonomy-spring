@@ -11,17 +11,34 @@ import java.util.Set;
 public class TaxonomyNode 
 {
     private String title;
-    private String nodeId;
-    private String seoUrl;
-    private List<TaxonomyNode> childNodes;
+    private String nodeid;
+    private String seourl;
+    private List<TaxonomyNode> childnodes;
     private Set<Tag> tags;
-    
-    public TaxonomyNode()
+
+    public TaxonomyNode() 
     {
-    	childNodes = new ArrayList<>();
-    	tags = new HashSet<>();
+        childnodes = new ArrayList<TaxonomyNode>();
+        tags = new HashSet<>();
     }
-    
+
+    public TaxonomyNode(TaxonomyNode original) 
+    {
+        this();
+        title = original.title;
+        nodeid = original.nodeid;
+        seourl = original.seourl;
+        
+        for (TaxonomyNode childNode : original.childnodes) 
+        {
+            childnodes.add(new TaxonomyNode(childNode));
+        }
+        for (Tag tag : original.tags) 
+        {
+            tags.add(new Tag(tag.getName(), tag.getTagType()));
+        }
+    }
+
     public String getTitle() {
         return title;
     }
@@ -30,28 +47,28 @@ public class TaxonomyNode
         title = theTitle;
     }
 
-    public String getNodeId() {
-        return nodeId;
+    public String getNodeid() {
+        return nodeid;
     }
 
-    public void setNodeId(String theNodeId) {
-        nodeId = theNodeId;
+    public void setNodeid(String theNodeid) {
+        nodeid = theNodeid;
     }
 
-    public String getSeoUrl() {
-        return seoUrl;
+    public String getSeourl() {
+        return seourl;
     }
 
-    public void setSeoUrl(String theSeoUrl) {
-        seoUrl = theSeoUrl;
+    public void setSeourl(String theSeourl) {
+        seourl = theSeourl;
     }
 
-    public List<TaxonomyNode> getChildNodes() {
-        return childNodes;
+    public List<TaxonomyNode> getChildnodes() {
+        return childnodes;
     }
 
-    public void setChildNodes(List<TaxonomyNode> theChildNodes) {
-        childNodes = theChildNodes;
+    public void setChildnodes(List<TaxonomyNode> theChildnodes) {
+        childnodes = theChildnodes;
     }
 
 	public Set<Tag> getTags() {

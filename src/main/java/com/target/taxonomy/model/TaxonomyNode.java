@@ -10,6 +10,7 @@ public class TaxonomyNode {
     private String nodeid;
     private String seourl;
     private List<TaxonomyNode> childnodes;
+    private List<Tag> tags;
 
     public String getTitle() {
         return title;

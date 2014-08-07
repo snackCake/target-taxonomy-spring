@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Stack;
 
 import com.target.taxonomy.model.Tag;
+import com.target.taxonomy.model.Tag.TagType;
 import com.target.taxonomy.model.TaxonomyNode;
 
 public class TaxonomyFilterManager 
@@ -53,7 +54,10 @@ public class TaxonomyFilterManager
 				String nodeTitle = n.getTitle();
 				
 				// Get all virtuals with this in the name
-				List<TaxonomyNode> virtualNodes = filterNodesFlat(taxoNode, filterCriteria);
+				FilterCriteria newFilterCriteria = new FilterCriteria();
+				newFilterCriteria.getIncludeTag().add(new Tag(taxoNode.getTitle(), TagType.CATEGORY_TYPE));
+				List<TaxonomyNode> virtualNodes = filterNodesFlat(taxoNode, newFilterCriteria);
+				
 				n.getChildnodes().addAll(virtualNodes);
 				
 			}
@@ -149,7 +153,7 @@ public class TaxonomyFilterManager
 
 	}
 
-	private boolean checkCriteria(FilterCriteria filterCriteria, TaxonomyNode taxoNode) 
+	public boolean checkCriteria(FilterCriteria filterCriteria, TaxonomyNode taxoNode) 
 	{
 		for (Tag tag : filterCriteria.getRequiredTag())
 		{

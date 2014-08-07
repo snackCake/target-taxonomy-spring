@@ -25,9 +25,9 @@ public class TaxonomyNode
     public TaxonomyNode(TaxonomyNode original) 
     {
         this();
-        title = original.title;
-        nodeid = original.nodeid;
-        seourl = original.seourl;
+        title = original.getTitle();
+        nodeid = original.getNodeid();
+        seourl = original.getSeourl();
         
         for (TaxonomyNode childNode : original.childnodes) 
         {
@@ -47,7 +47,7 @@ public class TaxonomyNode
      */
     public static TaxonomyNode findNode(TaxonomyNode node, String nodeid)
     {
-    	TaxonomyNode resultNode;
+    	TaxonomyNode resultNode = null;
     	if (node.nodeid.equalsIgnoreCase(nodeid))
     	{
     		resultNode = node;
@@ -71,7 +71,7 @@ public class TaxonomyNode
     		}
     	}
     		
-    	return null;
+    	return resultNode;
     }
 
     public String getTitle() {
